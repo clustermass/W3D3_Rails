@@ -25,7 +25,6 @@ class ShortenedUrl < ApplicationRecord
     end
 
      ShortenedUrl.create!(long_url: long_url, short_url: short_url, user_id: user.id)
-
   end
 
 
@@ -34,5 +33,12 @@ class ShortenedUrl < ApplicationRecord
     primary_key: :id,
     foreign_key: :user_id,
     class_name: :User
+  }
+
+
+  has_many :visits, {
+    primary_key: :id,
+    foreign_key: :short_url_id,
+    class_name: :Visit
   }
 end
